@@ -81,7 +81,7 @@ table {
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  margin: 20px 0;
+  margin: 20px 0 150px 0;
 }
 .header nav ul {
   display: flex;
@@ -92,7 +92,7 @@ table {
 .header nav ul li a {
   padding: 10px 20px;
 }
-.header nav ul li a :hover {
+.header nav ul li a:hover {
   opacity: 0.5;
 }
 
@@ -142,11 +142,15 @@ body {
   font-family: "Manrope";
   font-weight: 700;
   font-size: 32px;
-  line-height: 100%;
   letter-spacing: 0%;
-  margin: 0 auto;
 }
 
 .container {
   max-width: 1200px;
+  margin: 0 auto;
+}
+
+section {
+  height: 500px;
+  margin-bottom: 200px;
 }

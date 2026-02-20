@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0 150px 0;
+}
+.header nav ul {
+  display: flex;
+}
+.header nav ul li {
+  margin-left: 50px;
+}
+.header nav ul li a {
+  padding: 10px 20px;
+}
+.header nav ul li a:hover {
+  opacity: 0.5;
+}

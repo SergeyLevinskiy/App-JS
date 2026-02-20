@@ -36,8 +36,22 @@
                 </div>
             </section>
             <section class="blog" id="blog">
-                <div class="blog__body"></div>
-
+                <div class="blog__body">
+                    <div class="blog__new-post">
+                        <h2 class="blog__new-post"></h2>
+                        <div class="blog__form">
+                            <input type="text" class="blog__input blog__input--title" placeholder="Заголовок">
+                            <input type="text" class="blog__input blog__input--title" placeholder="Напиши пост">
+                            <button class="blog__button">Опубликовать</button>
+                            <p class="blog__error blog__error--title">Заголовок больше 100 символов</p>
+                            <p class="blog__error blog__error--title">Пост больше 200 символов</p>
+                        </div>
+                    </div>
+                    <div class="blog__posts">
+                        <h2 class="blog__title">Лента</h2>
+                        <p class="blog__empty">Тут пока пусто...</p>
+                    </div>
+                </div>
             </section>
             <section class="expenses" id="expenses">
                 <div class="expenses__body">
