@@ -1,0 +1,21 @@
+.header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    nav {
+        ul {
+            display: flex;
+            li {
+                margin-left: 50px;
+                a {
+                    padding: 10px 20px;
+                    :hover {
+                        opacity: 0.5;
+                    }
+                }
+            }
+        };
+    };
+}

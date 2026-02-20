@@ -1,0 +1,22 @@
+@use './mod/reset.scss';
+@use './mod/header.scss';
+@use './mod/counter.scss';
+
+html {
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: "Manrope";
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    margin: 0 auto;
+}
+.container {
+    max-width: 1200px;
+}
+
+
+
