@@ -4,8 +4,8 @@ const postsNode = document.querySelector('.blog__content');
 const blogButtom = document.querySelector('.blog__button');
 const validationMessage = document.querySelector('.validation-message');
 
-import { removeClassOpen } from "../script.js"
-import { addClassOpen } from "../script.js"
+import { removeClassOpen } from "../script.js";
+import { addClassOpen } from "../script.js";
 
 const posts = [];
 const TITLE_VALIDATION_LIMIT = 20;
@@ -19,14 +19,12 @@ postTextInputNode.addEventListener("input", function () {
 })
 
 
-blogButtom.addEventListener('click',
-
-    function () {
-        const postFormUser = getPostFromUser();
-        addPost(postFormUser);
-        renderPosts();
-        removeInputValue();
-    }
+blogButtom.addEventListener('click', function () {
+    const postFormUser = getPostFromUser();
+    addPost(postFormUser);
+    renderPosts();
+    removeInputValue();
+}
 )
 
 function removeInputValue() {

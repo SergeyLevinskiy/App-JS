@@ -18,7 +18,7 @@ popupNode.addEventListener('click', (event) => {
     }
 })
 
-function togglePopup() {
+export function togglePopup() {
     popupNode.classList.toggle(POPUP_OPENED_CLASSNAME);
     bodyNode.classList.toggle(BODY_FIXED_CLASSNAME);
 }
