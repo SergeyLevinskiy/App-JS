@@ -1,5 +1,5 @@
 const POPUP_OPENED_CLASSNAME = 'popup__change-limit-open';
-const BODY_FIXED_CLASSNAME = 'body_fixed';
+const BODY_FIXED_CLASSNAME = 'body-fixed';
 
 const bodyNode = document.querySelector('body');
 const popupNode = document.querySelector('.popup');
