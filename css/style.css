@@ -113,14 +113,8 @@ table {
   opacity: 0.5;
 }
 .header .logo {
-  position: relative;
   width: 200px;
   height: 60px;
-}
-.header .logo .logo-img {
-  top: 0;
-  left: 0;
-  position: absolute;
 }
 
 .counter {
