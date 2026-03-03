@@ -255,6 +255,23 @@ table {
   display: none;
 }
 
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 .expense {
   display: flex;
   flex-direction: column;
@@ -287,6 +304,15 @@ table {
   width: 100%;
   margin-bottom: 50px;
   position: relative;
+}
+.expense-form .error {
+  animation: shake 0.4s ease-in-out;
+}
+.expense-form .error::-moz-placeholder {
+  color: #FF0000;
+}
+.expense-form .error::placeholder {
+  color: #FF0000;
 }
 .expense-form__spending {
   display: flex;
