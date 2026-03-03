@@ -2,12 +2,6 @@ import { togglePopup, POPUP_OPENED_CLASSNAME, popupNode } from "./popup.js";
 import { removeClassOpen } from "../script.js";
 import { addClassOpen } from "../script.js";
 
-const CLASS_VALUE_GOOD = 'expense-info__state-value--good';
-const CLASS_VALUE_BAD = 'expense-info__state-value--bad';
-const CLASS_ERROR = 'error';
-const CLASS_SHAKE = 'shake';
-
-
 const expenseSpendingInputNode = document.querySelector('.expense-form__spending-input');
 const expenseListInputNode = document.querySelector('.expense-form__list');
 const expenseAddButton = document.querySelector('.expense-form__spending-btn-add');
@@ -20,9 +14,31 @@ const expenseResetButton = document.querySelector('.expense__btn-reset');
 const popupSpendingInputNode = document.querySelector('.popup__spending-input');
 const popupChangeLimitButton = document.querySelector('.popup__spending-btn-change');
 
+const CLASS_ERROR = 'error';
+const CLASS_SHAKE = 'shake';
+const CURRENCY = 'руб.';
+const STATUS_IN_LIMIT = 'Все хорошо';
+const STATUS_OFF_LIMIT = 'Все плохо';
+const STATUS_ON_LIMIT_CLASSNAME = 'expense-info__state-value--good';
+const STATUS_OFF_LIMIT_CLASSNAME = 'expense-info__state-value--bad';
+
 let limit = 10000;
 let sum = 0;
 let history = [];
+
+expenseAddButton.addEventListener('click', function () {
+    if (!expenseSpendingInputNode.value) {
+        chackingError(expenseSpendingInputNode);
+        return null;
+    }
+    const expenseFromUser = getExpenseFromUser()
+    addExpense(expenseFromUser);
+    render();
+    checkingLimit();
+    clearSpendingInputValue();
+    addClassOpen(expenseResetButton);
+})
+
 
 function addExpense({ expense, list }) {
     history.push({
@@ -31,7 +47,17 @@ function addExpense({ expense, list }) {
     });
 }
 
+function chackingError(name) {
+    if (!name.value) {
+        addClassError(name)
+        return;
+    } else {
+        removeClassError(name);
+    };
+}
+
 function getExpenseFromUser() {
+    chackingError(expenseSpendingInputNode)
     const expense = Number(expenseSpendingInputNode.value);
     const list = expenseListInputNode.value;
     return {
@@ -44,44 +70,49 @@ function getExpense() {
     return history;
 }
 
-function renderExpense() {
+function render() {
+    renderSum();
+    renderHistory();
+}
+
+function renderHistory() {
     const history = getExpense();
     let historyHTML = '';
-    history.forEach((stor, index) => {
+    history.forEach((element, index) => {
         index += 1
         historyHTML += `
             <li class="expense-info__history-item">
-               ${index}.  ${stor.expense} руб. - ${stor.list}
+                ${index}.  ${element.expense} ${CURRENCY} - ${element.list}
             </li>
         `
     });
     expenseHistoryNode.innerHTML = historyHTML;
 }
 
-function removeSpendingInputValue() {
-    expenseSpendingInputNode.value = "";
-}
-
-function summ() {
-    return sum += Number(expenseSpendingInputNode.value);
-}
-
 function renderSum() {
-    summ();
-    expenseTotalValueNode.innerHTML = `<span>${sum} руб.</span>`;
+    calculateExpansesSum();
+    renderTotalValueNode();
+}
+
+function renderTotalValueNode() {
+    expenseTotalValueNode.innerText = sum;
+}
+
+function calculateExpansesSum() {
+    return sum += Number(expenseSpendingInputNode.value);
 }
 
 function checkingLimit() {
     let name = expenseStateValueNode;
     if (sum > limit) {
         let difference = sum - limit;
-        name.innerHTML = `все плохо (-${difference} руб)`;
-        name.classList.remove(CLASS_VALUE_GOOD);
-        name.classList.add(CLASS_VALUE_BAD);
+        name.innerHTML = `${STATUS_OFF_LIMIT} (-${difference} ${CURRENCY})`;
+        name.classList.remove(STATUS_ON_LIMIT_CLASSNAME);
+        name.classList.add(STATUS_OFF_LIMIT_CLASSNAME);
     } else {
-        name.innerHTML = `все хорошо`;
-        name.classList.add(CLASS_VALUE_GOOD);
-        name.classList.remove(CLASS_VALUE_BAD);
+        name.innerHTML = `${STATUS_IN_LIMIT}`;
+        name.classList.add(STATUS_ON_LIMIT_CLASSNAME);
+        name.classList.remove(STATUS_OFF_LIMIT_CLASSNAME);
     }
 }
 
@@ -94,45 +125,33 @@ function removeClassError(name) {
     name.classList.remove(CLASS_ERROR);
 }
 
-expenseAddButton.addEventListener('click', function () {
-    if (!expenseSpendingInputNode.value) {
-        addClassError(expenseSpendingInputNode)
-        return;
-    } else {
-        removeClassError(expenseSpendingInputNode);
-    };
-    const expenseFromUser = getExpenseFromUser()
-    addExpense(expenseFromUser);
-    renderSum();
-    renderExpense();
-    checkingLimit()
-    removeSpendingInputValue();
-    addClassOpen(expenseResetButton);
-})
+function clearSpendingInputValue() {
+    expenseSpendingInputNode.value = '';
+}
 
-function removeHistoryNode() {
+function clearHistoryNode() {
     expenseHistoryNode.innerHTML = '';
 }
 
-function removeValue() {
+function clearValue() {
     sum = 0;
     history = [];
 }
-function removeTotalValueNode() {
-    expenseTotalValueNode.innerHTML = '0 руб.';
-}
+
 expenseResetButton.addEventListener('click', function () {
-    removeValue()
-    removeSpendingInputValue();
-    removeHistoryNode();
-    removeTotalValueNode()
+    clearValue()
+    clearSpendingInputValue();
+    clearHistoryNode();
+    renderTotalValueNode()
     checkingLimit();
     removeClassOpen(expenseResetButton);
 })
 
+
+
 function chengeLimit() {
     limit = Number(popupSpendingInputNode.value);
-    expenseSLimitValueNode.innerHTML = `${limit} руб.`;
+    expenseSLimitValueNode.innerHTML = `${limit} ${CURRENCY}`;
     popupSpendingInputNode.value = '';
 }
 
@@ -141,6 +160,10 @@ popupChangeLimitButton.addEventListener('click', function () {
     togglePopup();
     checkingLimit();
 })
+
+
+
+
 
 document.addEventListener('keydown', function (event) {
     if (popupNode.classList.contains(POPUP_OPENED_CLASSNAME)) {
