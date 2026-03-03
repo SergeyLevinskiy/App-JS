@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:ital@0;1&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Movie List</title>
+</head>
+
+<body class="movielist-body">
+    <div class="container">
+        <header class="header">
+            <a class="logo" href="https://github.com/DeveloperSergeyL">DeveloperSergey</a>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">App JS</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section class="movielist">
+                <div class="movielist__title">
+                    <h2 class="movielist__title-text">список фильмов</h2>
+                    <h2 class="movielist__title-year">2026</h2>
+                </div>
+                <div class="movielist__section">
+                    <div class="movielist__section-movieinput">
+                        <input type="text" class="movielist__section-movieinput-input"
+                            placeholder="Введите название фильма">
+                        <button class="movielist__section-movieinput-button-add"></button>
+                    </div>
+                    <ol class="movielist__section-movielist">
+                        <li class="movielist__movie" data-id="4">
+                            <input type="checkbox" name="option_4" value="movie_4" class="movielist__movie-checkbox"
+                                id="movie_4">
+                            <label for="movie_4" class="movielist__movie-name">Отступники</label>
+                            <button class="movielist__movie-button-delete"></button>
+                        </li>
+                        <li class="movielist__movie" data-id="3">
+                            <input type="checkbox" name="option_3" value="movie_3" class="movielist__movie-checkbox"
+                                id="movie_3">
+                            <label for="movie_3" class="movielist__movie-name">Волк с Уолл-Стрит</label>
+                            <button class="movielist__movie-button-delete"></button>
+                        </li>
+                        <li class="movielist__movie" data-id="2">
+                            <input type="checkbox" name="option_2" value="movie_2" class="movielist__movie-checkbox"
+                                id="movie_2">
+                            <label for="movie_2" class="movielist__movie-name">Остров проклятых</label>
+                            <button class="movielist__movie-button-delete"></button>
+                        </li>
+                        <li class="movielist__movie" data-id="1">
+                            <input type="checkbox" name="option_1" value="movie_1" class="movielist__movie-checkbox"
+                                id="movie_1">
+                            <label for="movie_1" class="movielist__movie-name">Начало</label>
+                            <button class="movielist__movie-button-delete"></button>
+                        </li>
+                    </ol>
+                </div>
+        </main>
+    </div>
+</body>
+<script type="module" src="../js/modules/movielist.js"></script>
+
+</html>

@@ -26,7 +26,6 @@ blogButtom.addEventListener('click', function () {
         validation();
         return;
     };
-    console.log(postTitelInputNode.value);
     const postFormUser = getPostFromUser();
     addPost(postFormUser);
     renderPosts();

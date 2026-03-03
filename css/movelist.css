@@ -1,0 +1,16 @@
+.movelist-body {
+  background-color: #181818;
+  font-family: "Arimo", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  color: #F3F6F9;
+}
+
+.movelist__title {
+  text-transform: uppercase;
+}
+
+.movelist__year {
+  text-transform: uppercase;
+}
